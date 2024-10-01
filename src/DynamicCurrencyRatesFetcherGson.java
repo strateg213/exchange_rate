@@ -12,12 +12,6 @@ import java.util.Scanner;
 
 public class DynamicCurrencyRatesFetcherGson {
 
-    // Класс для представления данных о курсе валют
-    static class Rate {
-        String Date;
-        double Cur_OfficialRate;
-    }
-
     // Таблица соответствий валютных кодов и их ID
     private static final int USD_ID = 431;
     private static final int EUR_ID = 451;
