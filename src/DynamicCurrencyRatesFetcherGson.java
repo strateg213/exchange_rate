@@ -12,18 +12,13 @@ import java.util.Scanner;
 
 public class DynamicCurrencyRatesFetcherGson {
 
-    // Таблица соответствий валютных кодов и их ID
-    private static final int USD_ID = 431;
-    private static final int EUR_ID = 451;
-    private static final int CNY_ID = 462;
-
     public static void main(final String[] args) throws Exception {
         final Scanner scanner = new Scanner(System.in);
 
         // Получение кода валюты от пользователя и замена его на ID
         System.out.print("Выберите валюту (USD, EUR, или CNY): ");
         final String currencyCode = scanner.next().toUpperCase();
-        final int currencyId = getCurrencyId(currencyCode);
+        final Currency currency = Currency.valueOf(currencyCode);
 
         // Ввод количества дней
         System.out.print("Введите количество дней: ");
@@ -39,7 +34,7 @@ public class DynamicCurrencyRatesFetcherGson {
         final String endDateString = endDate.format(formatter);
 
         // Вывод данных для выбранной валюты
-        final List<Rate> rates = fetchAndPrintRatesForCurrency(currencyId, startDateString, endDateString);
+        final List<Rate> rates = fetchAndPrintRatesForCurrency(currency.getId(), startDateString, endDateString);
         // Подсчет среднего курса
         final double averageRate = calculateAverageRate(rates);
         // Вывод данных о курсах
@@ -48,16 +43,6 @@ public class DynamicCurrencyRatesFetcherGson {
             System.out.println(formattedDate + " | " + rate.Cur_OfficialRate);
         }
         System.out.printf("Средний курс: %.4f%n", averageRate);
-    }
-
-    // Метод для получения ID валюты по коду
-    private static int getCurrencyId(final String currencyCode) {
-        return switch (currencyCode) {
-            case "USD" -> USD_ID;
-            case "EUR" -> EUR_ID;
-            case "CNY" -> CNY_ID;
-            default -> throw new IllegalArgumentException("Неверный код валюты: " + currencyCode);
-        };
     }
 
     // Метод для получения и вывода курсов валют
