@@ -8,21 +8,18 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class DynamicCurrencyRatesFetcherGson {
 
     public static void main(final String[] args) throws Exception {
-        final Scanner scanner = new Scanner(System.in);
+        final UserInputHandler inputHandler = new UserInputHandler();
 
-        // Получение кода валюты от пользователя и замена его на ID
-        System.out.print("Выберите валюту (USD, EUR, или CNY): ");
-        final String currencyCode = scanner.next().toUpperCase();
+        // Получение кода валюты и количества дней от пользователя
+        final String currencyCode = inputHandler.getCurrencyCode();
+        final int daysBack = inputHandler.getDaysBack();
+
         final Currency currency = Currency.valueOf(currencyCode);
-
-        // Ввод количества дней
-        System.out.print("Введите количество дней: ");
-        final int daysBack = scanner.nextInt();
 
         // Получение текущей даты и расчет начала и конца периода
         final LocalDate endDate = LocalDate.now();  // Сегодняшняя дата
