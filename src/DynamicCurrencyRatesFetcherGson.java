@@ -41,7 +41,7 @@ public class DynamicCurrencyRatesFetcherGson {
             final String formattedDate = rate.Date.substring(0, 10);
             System.out.println(formattedDate + " | " + rate.Cur_OfficialRate);
         }
-        System.out.printf("Средний курс: %.4f%n", averageRate);
+        System.out.printf("Средний курс: %s%n", String.format("%.4f", averageRate).replace(',', '.'));
     }
 
     // Метод для парсинга JSON в список объектов Rate
