@@ -18,7 +18,6 @@ public class DynamicCurrencyRatesFetcherGson {
         // Получение кода валюты и количества дней от пользователя
         final String currencyCode = inputHandler.getCurrencyCode();
         final int daysBack = inputHandler.getDaysBack();
-
         final Currency currency = Currency.valueOf(currencyCode);
 
         // Получение текущей даты и расчет начала и конца периода

@@ -1,7 +1,7 @@
 public enum Currency {
     USD(431),
     EUR(451),
-    RUB(456);
+    CNY(456);
 
     private final int id;
 
